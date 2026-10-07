@@ -7,10 +7,11 @@
   <style>
     body { font-family: Arial; margin: 0; padding: 0; }
     header { background: #f7f7f7; padding: 20px; text-align: center; }
-    .services { padding: 20px; }
-    .service { margin: 10px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-    .service img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
-    .cta { background: #25D366; color: white; padding: 10px; border: none; cursor: pointer; }
+    .services { padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; }
+    .service-card { margin: 10px; width: 250px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .service-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0; }
+    .service-info { padding: 10px; }
+    .cta { background: #25D366; color: white; padding: 10px; border: none; cursor: pointer; width: 100%; border-radius: 5px; }
     #inquiry-form { padding: 20px; background: #f2f2f2; margin: 20px; }
   </style>
 </head>
@@ -20,10 +21,7 @@
     <p>Professional beauty services in Ishaka</p>
   </header>
   <section class="services">
-    <h2>Our Services</h2>
-    <div id="services-list">
-      <!-- Services will be listed here -->
-    </div>
+    <!-- Services will be listed here -->
   </section>
   <section id="inquiry-form">
     <h2>Get in Touch</h2>
@@ -46,16 +44,18 @@
       { name: "Weaving", price: "UGX 30,000", image: "weaving.jpg" },
       { name: "Training (Note: TRAINING AVAILABLE)", price: "UGX 100,000", image: "training.jpg" }
     ];
-    const servicesList = document.getElementById('services-list');
+    const servicesSection = document.querySelector('.services');
     services.forEach(service => {
-      servicesList.innerHTML += `
-        <div class="service">
+      servicesSection.innerHTML += `
+        <div class="service-card">
           <img src="${service.image}" alt="${service.name}">
-          <h3>${service.name}</h3>
-          <p>Price: ${service.price}</p>
-          <a href="https://wa.me/${whatsappNumber}?text=Hi, I'd like to book ${service.name}" target="_blank">
-            <button class="cta">Book Now on WhatsApp</button>
-          </a>
+          <div class="service-info">
+            <h3>${service.name}</h3>
+            <p>Price: ${service.price}</p>
+            <a href="https://wa.me/${whatsappNumber}?text=Hi, I'd like to book ${service.name}" target="_blank">
+              <button class="cta">Book Now</button>
+            </a>
+          </div>
         </div>
       `;
     });
