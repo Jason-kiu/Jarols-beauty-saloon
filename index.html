@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarols Beauty Saloon</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 0; }
+    header { background: #f7f7f7; padding: 20px; text-align: center; }
+    .services { padding: 20px; }
+    .service { margin: 10px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+    .cta { background: #25D366; color: white; padding: 10px; border: none; cursor: pointer; }
+    #inquiry-form { padding: 20px; background: #f2f2f2; margin: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jarols Beauty Saloon</h1>
+    <p>Professional beauty services in Ishaka</p>
+  </header>
+  <section class="services">
+    <h2>Our Services</h2>
+    <div id="services-list">
+      <!-- Services will be listed here -->
+    </div>
+  </section>
+  <section id="inquiry-form">
+    <h2>Get in Touch</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="text" id="phone" placeholder="Your Phone Number" required>
+      <textarea id="message" placeholder="Your Message"></textarea>
+      <button type="submit">Send Inquiry</button>
+    </form>
+  </section>
+  <script>
+    const whatsappNumber = "256767037952"; // or "256752325259"
+    const services = [
+      { name: "Bridal services", price: "UGX 50,000" },
+      { name: "Hair plaiting", price: "UGX 15,000" },
+      { name: "Hair styling", price: "UGX 20,000" },
+      { name: "Men hair cuts", price: "UGX 10,000" },
+      { name: "Hair relaxing", price: "UGX 25,000" },
+      { name: "Nails", price: "UGX 8,000" },
+      { name: "Weaving", price: "UGX 30,000" },
+      { name: "Training (Note: TRAINING AVAILABLE)", price: "UGX 100,000" }
+    ];
+    const servicesList = document.getElementById('services-list');
+    services.forEach(service => {
+      servicesList.innerHTML += `
+        <div class="service">
+          <h3>${service.name}</h3>
+          <p>Price: ${service.price}</p>
+          <a href="https://wa.me/${whatsappNumber}?text=Hi, I'd like to book ${service.name}" target="_blank">
+            <button class="cta">Book Now on WhatsApp</button>
+          </a>
+        </div>
+      `;
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi, I'm ${name}. ${message}`;
+      window.open(whatsappLink, '_blank');
+    });
+  </script>
+</body>
+</html>
